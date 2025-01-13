@@ -27,24 +27,33 @@ function App() {
 	const dispatch = useDispatch();
 
 	// Testing my api, fetcher function
-	function apiTesting() {
-		fetchDataFromAPI('/movie/popular')
+	function fetchApiConfig() {
+		fetchDataFromAPI('/configuration')
 			.then(res => {
 				console.log(res);
-				dispatch(getApiConfiguration(res));
+
+				// storing only the required data
+				const url = {
+					backdrop: res?.images?.secure_base_url + "original",
+					poster: res?.images?.secure_base_url + "original",
+					profile: res?.images?.secure_base_url + "original",
+				}
+
+				dispatch(getApiConfiguration(url));
 		})
 	}
 
 
 	// calling my defined function in useEffect
 	useEffect(() => {
-		apiTesting();
+		fetchApiConfig();
 	}, [])
 
 	return (
 		// This BrowserRouter acts as a wrapper for our App.jsx - all Routes will nested inside this
 		<BrowserRouter>
-			
+			<Header />
+
 			{/* All the routes will be defined here */}
 			<Routes>
 				<Route path={"/"} element={<Home />} />
@@ -52,7 +61,8 @@ function App() {
 				<Route path={"/search/:query"} element={<SearchResult />} />
 				<Route path={"/explore/:mediaType"} element={<Explore />} />
 				<Route  path={"*"} element={<NotFound />} />
-		</Routes>
+			</Routes>
+			<Footer />
 		</BrowserRouter>
 	);
 }
