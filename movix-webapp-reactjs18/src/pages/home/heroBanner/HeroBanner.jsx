@@ -34,9 +34,10 @@ const HeroBanner = () => {
   // Choosing random movie from the data
   useEffect(() => {
     // Normally in data from servers, we need to use "Optional Chaining", bcz if we do this, the preceeding code will not execute, "until - it's value is UNDEFINED"
-    const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBackground(bg);
-  }, [data])
+
+      const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+      setBackground(bg);
+  }, [data, url.backdrop])
 
 
   function searchQueryHandler(e) {
@@ -48,10 +49,14 @@ const HeroBanner = () => {
 
   return (
     <div className="heroBanner">
-      <div className="backdrop">
+      {!loading && <div className="backdrop">
         <Img src={background} />
-      </div>
-      <div className="wrapper">
+      </div>}
+
+      {/* We will add another div called "oppacity-layer - to show merging effect" */}
+      <div className="opacity-layer"></div>
+
+      <ContentWrapper>
         <div className="heroBannerContent">
           <span className="title">Welcome,</span>
           <span className="subTitle">
@@ -69,7 +74,7 @@ const HeroBanner = () => {
           </div>
           {background}
         </div>
-      </div>
+              </ContentWrapper>
     </div>
   );
 }
