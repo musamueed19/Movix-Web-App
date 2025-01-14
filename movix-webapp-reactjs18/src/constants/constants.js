@@ -13,3 +13,22 @@ export const menuItems = [
     //     href: "/search",
     // },
 ];
+
+
+export const footerItems = [
+    {
+        title: "Terms of Use",
+    },
+    {
+        title: "Privacy-Policy",
+    },
+    {
+        title: "About",
+    },
+    {
+        title: "Blog",
+    },
+    {
+        title: "FAQ",
+    },
+]
