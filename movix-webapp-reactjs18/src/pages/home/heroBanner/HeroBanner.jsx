@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 // importing useNavigate from react-router-dom
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 // using useSelector for backdrop
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 // importing our builtin-lazyLoad Image comp
-import Img from "../../../components/lazyLoadImage/Img"
+import Img from "../../../components/lazyLoadImage/Img";
 
 // importing our builtin-ContentWrapper comp
-import ContentWrapper from "../../../components/contentWrapper/ContentWrapper"
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 
+import "./style.scss";
 
-import "./style.scss"
-
-import useFetch from "../../../hooks/useFetch"
+import useFetch from "../../../hooks/useFetch";
 
 const HeroBanner = () => {
-
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -25,33 +23,32 @@ const HeroBanner = () => {
   // Now we need to create some COMPONENTS & A "custom HOOK"
   const { data, loading } = useFetch("/movie/upcoming");
 
-
   // using base_image_url
-  const { url } = useSelector(state => state.home); // getting backdrop url from state
-
-
+  const { url } = useSelector((state) => state.home); // getting backdrop url from state
 
   // Choosing random movie from the data
   useEffect(() => {
     // Normally in data from servers, we need to use "Optional Chaining", bcz if we do this, the preceeding code will not execute, "until - it's value is UNDEFINED"
 
-      const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-      setBackground(bg);
-  }, [data, url.backdrop])
-
+    const bg =
+      url.backdrop +
+      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setBackground(bg);
+  }, [data, url.backdrop]);
 
   function searchQueryHandler(e) {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
     }
-
   }
 
   return (
     <div className="heroBanner">
-      {!loading && <div className="backdrop-img">
-        <Img src={background} />
-      </div>}
+      {!loading && (
+        <div className="backdrop-img">
+          <Img src={background} />
+        </div>
+      )}
 
       {/* We will add another div called "oppacity-layer - to show merging effect" */}
       <div className="opacity-layer"></div>
@@ -73,9 +70,9 @@ const HeroBanner = () => {
             <button type="button">Search</button>
           </div>
         </div>
-              </ContentWrapper>
+      </ContentWrapper>
     </div>
   );
-}
+};
 
-export default HeroBanner
+export default HeroBanner;

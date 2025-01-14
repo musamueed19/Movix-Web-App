@@ -2,11 +2,11 @@ import { HiOutlineSearch } from "react-icons/hi";
 export const menuItems = [
     {
         title: "Movies",
-        href: "/movies",
+        href: "/movie",
     },
     {
         title: "TV Shows",
-        href: "/tv-shows",
+        href: "/tv",
     },
     // {
     //     title: <HiOutlineSearch />,
