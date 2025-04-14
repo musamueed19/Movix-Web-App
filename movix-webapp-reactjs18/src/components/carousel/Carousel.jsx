@@ -18,6 +18,11 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../assets/no-poster.png";
 
+// circularRating
+import CircularRating from "../circularRating/CircularRating";
+
+
+
 const Carousel = ({ data, loading }) => {
   // destructuring "url" from redux homeSlice
   const { url } = useSelector((state) => state.home);
@@ -65,6 +70,7 @@ const Carousel = ({ data, loading }) => {
                 <div key={item?.id} className="carouselItem">
                   <div className="posterBlock">
                     <Img src={posterUrl} />
+                    <CircularRating rating={item?.vote_average.toFixed(1)} />
                   </div>
                   <div className="textBlock">
                     <span className="title">{item?.title || item?.name}</span>
