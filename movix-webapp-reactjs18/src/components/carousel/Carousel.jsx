@@ -22,16 +22,28 @@ import PosterFallback from "../../assets/no-poster.png";
 import CircularRating from "../circularRating/CircularRating";
 import Genre from "../genre/Genre";
 
-
-
 const Carousel = ({ data, loading }) => {
   // destructuring "url" from redux homeSlice
   const { url } = useSelector((state) => state.home);
+
+  // handling sliding effect in Desktop
+  const carouselContainer = useRef();
   const navigate = useNavigate();
 
   // carousel horizontal scrool 4 cards per scroll
   function navigation(dir) {
     console.log(dir);
+    const container = carouselContainer.current;
+
+    const scrollAmount =
+      dir === "left"
+        ? container.scrollLeft - (container.offsetWidth + 20)
+        : container.scrollLeft + (container.offsetWidth + 20);
+    
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    })
   }
 
   // function that return jsx code for skeleton Carousel - card
@@ -62,13 +74,15 @@ const Carousel = ({ data, loading }) => {
 
         {/* now rendering the card for carousel */}
         {!loading ? (
-          <div className="carouselItems">
+          <div className="carouselItems" ref={carouselContainer}>
             {data?.map((item, index) => {
               const posterUrl = item?.poster_path
                 ? url.poster + item?.poster_path
                 : PosterFallback;
               return (
-                <div key={item?.id} className="carouselItem">
+                <div key={item?.id} className="carouselItem"
+                onClick={() => navigate(`/${item?.media_type}/${item?.id}`)}
+                >
                   <div className="posterBlock">
                     <Img src={posterUrl} />
                     <CircularRating rating={item?.vote_average.toFixed(1)} />
