@@ -22,7 +22,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import CircularRating from "../circularRating/CircularRating";
 import Genre from "../genre/Genre";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endpoint }) => {
   // destructuring "url" from redux homeSlice
   const { url } = useSelector((state) => state.home);
 
@@ -81,7 +81,7 @@ const Carousel = ({ data, loading }) => {
                 : PosterFallback;
               return (
                 <div key={item?.id} className="carouselItem"
-                onClick={() => navigate(`/${item?.media_type}/${item?.id}`)}
+                onClick={() => navigate(`/${item?.media_type || endpoint}/${item?.id}`)}
                 >
                   <div className="posterBlock">
                     <Img src={posterUrl} />
