@@ -20,6 +20,7 @@
         opacity: 0.5;
         z-index: 1;
         display: none;
+        // background: var(--gradient);
         @include md {
             display: block;
         }
@@ -28,10 +29,10 @@
         }
     }
     .carouselLeftNav {
-        left: 30px;
+        left: 0px;
     }
-    .carouselRighttNav {
-        right: 30px;
+    .carouselRightNav {
+        right: 0px;
     }
     .loadingSkeleton {
         display: flex;

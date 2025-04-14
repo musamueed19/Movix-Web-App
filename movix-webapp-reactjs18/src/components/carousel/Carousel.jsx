@@ -1,12 +1,12 @@
-import {useRef} from "react"
+import { useRef } from "react";
 
-import "./style.scss"
+import "./style.scss";
 
 // import icons
 import {
-BsFillArrowLeftCircleFill,
-BsFillArrowRightCircleFill,
-} from "react-icons/bs"
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 
 // third party imports
 import { useNavigate } from "react-router-dom";
@@ -18,13 +18,10 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../assets/no-poster.png";
 
-
-
-const Carousel = ({data, loading}) => {
+const Carousel = ({ data, loading }) => {
   // destructuring "url" from redux homeSlice
-  const { url } = useSelector(state => state.home);
+  const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
-
 
   // carousel horizontal scrool 4 cards per scroll
   function navigation(dir) {
@@ -47,10 +44,12 @@ const Carousel = ({data, loading}) => {
     <div className="carousel">
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
+          color="white"
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
         />
         <BsFillArrowRightCircleFill
+          color="white"
           className="carouselRightNav arrow"
           onClick={() => navigation("right")}
         />
@@ -80,17 +79,17 @@ const Carousel = ({data, loading}) => {
             })}
           </div>
         ) : (
-            <div className="loadingSkeleton">
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
+          <div className="loadingSkeleton">
+            {skItem()}
+            {skItem()}
+            {skItem()}
+            {skItem()}
+            {skItem()}
           </div>
         )}
       </ContentWrapper>
     </div>
   );
-}
+};
 
-export default Carousel
+export default Carousel;
