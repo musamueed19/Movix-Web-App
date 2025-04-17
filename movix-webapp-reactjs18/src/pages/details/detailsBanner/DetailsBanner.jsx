@@ -34,6 +34,14 @@ const DetailsBanner = ({ video, crew }) => {
   // we are getting, genresArray as both {id, name}, we need only id, so, we'll create a variable to do this
   const _genres = data?.genres?.map((item) => item.id);
 
+  // we don't want to see all crews, so. we will filter from crews array
+  const director = crew?.filter((crew) => crew.job === "Director");
+  const writer = crew?.filter(
+    (crew) =>
+      crew.job === "Writer" || crew.job === "Screenplay" || crew.job === "Story"
+  );
+
+  console.log(writer)
   return (
     <div className="detailsBanner">
       {/* when we get content from server, then show this */}
@@ -135,6 +143,54 @@ const DetailsBanner = ({ video, crew }) => {
                         </div>
                       )}
                     </div>
+
+                    {/* now, we will list directors first, but check, if directors eixts - which is immpossible for shows */}
+
+                    {director?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Director: </span>
+                        <span className="text">
+                          {director.map((item, index) => (
+                            <span key={index}>
+                              {item?.name}
+                              {director.length - 1 !== index && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* now, time for writers */}
+                    {writer?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Writer: </span>
+                        <span className="text">
+                          {writer.map((item, index) => (
+                            <span key={index}>
+                              {item?.name}
+                              {writer.length - 1 !== index && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* now, if we have animated shows, we have creator, instead of director */}
+                    {data?.created_by?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Creator:</span>
+                        <span className="text">
+                          {data?.created_by?.map((item, index) => (
+                            <span key={index}>
+                              {item?.name}
+                              {data?.created_by?.length - 1 !== index && ", "}
+                            </span>
+                          ))}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* end of Right section */}
                   </div>
                 </div>
               </ContentWrapper>
