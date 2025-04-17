@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 // import useParams
 import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
+import Cast from "./cast/Cast";
 
 const Details = () => {
   useParams;
@@ -22,6 +23,10 @@ const Details = () => {
         <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
         {/* now, we need to call 2 APIs, - for Videos section */}
         {/* - for Casts Section */}
+
+
+        {/* Now, we will show cast section here */}
+        <Cast casts={credits?.cast} loading={creditsLoading} />
       </div>
       {/* )} */}
     </>
