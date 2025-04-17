@@ -27,7 +27,7 @@ function App() {
   // Testing my api, fetcher function
   function fetchApiConfig() {
     fetchDataFromAPI("/configuration").then((res) => {
-      console.log(res);
+      // console.log(res);
 
       // storing only the required data
       const url = {

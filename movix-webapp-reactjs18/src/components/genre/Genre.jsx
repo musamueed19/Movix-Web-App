@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 // styles
 import "./style.scss"
 
-const Genre = ({ genreId }) => {
+const Genre = ({ genreIds }) => {
   const { genres } = useSelector((state) => state.home);
 
   return (
     <div className="genres">
       {
-        genreId?.map((id) => {
+        genreIds?.map((id) => {
           if (!genres[id]) return;
           return <div key={id} className="genre">{genres[id]}</div>;
         })
