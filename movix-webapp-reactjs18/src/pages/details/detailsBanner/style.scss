@@ -66,11 +66,11 @@
         @include md {
           font-size: 34px;
           line-height: 44px;
-          .originCountry {
-            font-size: 10px;
-            font-weight: 600;
-            margin: 0 2px;
-          }
+        }
+        .originCountry {
+          font-size: 10px;
+          font-weight: 600;
+          margin: 0 2px;
         }
       }
       .subtitle {

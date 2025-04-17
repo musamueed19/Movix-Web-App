@@ -78,7 +78,7 @@ const DetailsBanner = ({ video, crew }) => {
                       {/* "name" in case of TV SHows - "title" in case of Movies */}
                       {data?.name || data?.title}
                       <span className="originCountry">
-                        ({data?.origin_country.join(",")})
+                        ({data?.origin_country.join(",")}){" "}
                       </span>
                       {`(${dayjs(
                         data?.release_date || data?.first_air_date
