@@ -13,6 +13,7 @@ import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 // playbtn
 import PlayBtn from "../PlayBtn.jsx";
+import VideoPopup from "../../../components/videoPopup/VideoPopup.jsx";
 
 const DetailsBanner = ({ video, crew }) => {
   // normally, we get "Time Duration of Movies". This function will format into desired for us.
@@ -40,6 +41,11 @@ const DetailsBanner = ({ video, crew }) => {
     (crew) =>
       crew.job === "Writer" || crew.job === "Screenplay" || crew.job === "Story"
   );
+
+  // now, we will create states, videoId, show
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
+
 
   console.log(writer)
   return (
@@ -95,8 +101,9 @@ const DetailsBanner = ({ video, crew }) => {
                       {/* now, we will use Play btn */}
                       <div
                         className="playbtn"
-                        onClick={(e) => {
-                          console.log("playbtn is clicked....");
+                        onClick={() => {
+                          setShow(true)
+                          setVideoId(video?.key)
                         }}
                       >
                         <PlayBtn />
@@ -193,6 +200,14 @@ const DetailsBanner = ({ video, crew }) => {
                     {/* end of Right section */}
                   </div>
                 </div>
+
+                {/* video popup */}
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
               </ContentWrapper>
             </React.Fragment>
           )}
