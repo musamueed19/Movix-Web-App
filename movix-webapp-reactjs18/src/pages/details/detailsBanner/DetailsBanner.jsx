@@ -46,7 +46,7 @@ const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
 
-  console.log(writer);
+  // console.log(writer);
   return (
     <div className="detailsBanner">
       {/* when we get content from server, then show this */}
