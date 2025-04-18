@@ -79,6 +79,8 @@ function App() {
         <Route path={"/:mediaType/:id"} element={<Details />} />
         <Route path={"/search/:query"} element={<SearchResult />} />
         <Route path={"/explore/:mediaType"} element={<Explore />} />
+        <Route path={"/movie/:id"} element={<Details />} />
+        <Route path={"/tv/:id"} element={<Details />} />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
       <Footer />
