@@ -39,11 +39,11 @@ const Carousel = ({ data, loading, endpoint, title }) => {
       dir === "left"
         ? container.scrollLeft - (container.offsetWidth + 20)
         : container.scrollLeft + (container.offsetWidth + 20);
-    
+
     container.scrollTo({
       left: scrollAmount,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
 
   // function that return jsx code for skeleton Carousel - card
@@ -62,27 +62,35 @@ const Carousel = ({ data, loading, endpoint, title }) => {
     <div className="carousel">
       <ContentWrapper>
         {title && <div className="carouselTitle">{title}</div>}
-        <BsFillArrowLeftCircleFill
-          color="white"
-          className="carouselLeftNav arrow"
-          onClick={() => navigation("left")}
-        />
-        <BsFillArrowRightCircleFill
-          color="white"
-          className="carouselRightNav arrow"
-          onClick={() => navigation("right")}
-        />
+        {data?.length > 0 && (
+          <>
+            <BsFillArrowLeftCircleFill
+              color="white"
+              className="carouselLeftNav arrow"
+              onClick={() => navigation("left")}
+            />
+            <BsFillArrowRightCircleFill
+              color="white"
+              className="carouselRightNav arrow"
+              onClick={() => navigation("right")}
+            />
+          </>
+        )}
 
         {/* now rendering the card for carousel */}
         {!loading ? (
           <div className="carouselItems" ref={carouselContainer}>
-            {data?.map((item, index) => {
+            {data?.map((item) => {
               const posterUrl = item?.poster_path
                 ? url.poster + item?.poster_path
                 : PosterFallback;
               return (
-                <div key={item?.id} className="carouselItem"
-                onClick={() => navigate(`/${item?.media_type || endpoint}/${item?.id}`)}
+                <div
+                  key={item?.id}
+                  className="carouselItem"
+                  onClick={() =>
+                    navigate(`/${item?.media_type || endpoint}/${item?.id}`)
+                  }
                 >
                   <div className="posterBlock">
                     <Img src={posterUrl} />

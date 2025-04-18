@@ -36,6 +36,13 @@
             color: white;
             cursor: pointer;
         }
+        .fallBackText {
+            position: absolute;
+            left: 35%;
+            top: 45%;
+            font-weight:bold;
+            font-size: 24px;
+        }
     }
     &.visible {
         opacity: 1;

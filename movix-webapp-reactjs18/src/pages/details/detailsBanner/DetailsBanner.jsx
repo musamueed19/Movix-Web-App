@@ -46,8 +46,7 @@ const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
 
-
-  console.log(writer)
+  console.log(writer);
   return (
     <div className="detailsBanner">
       {/* when we get content from server, then show this */}
@@ -102,8 +101,10 @@ const DetailsBanner = ({ video, crew }) => {
                       <div
                         className="playbtn"
                         onClick={() => {
-                          setShow(true)
-                          setVideoId(video?.key)
+                          // if (!!video) {
+                            setShow(true);
+                            setVideoId(video?.key);
+                          // }
                         }}
                       >
                         <PlayBtn />
@@ -207,6 +208,7 @@ const DetailsBanner = ({ video, crew }) => {
                   setShow={setShow}
                   videoId={videoId}
                   setVideoId={setVideoId}
+                  autoPlay
                 />
               </ContentWrapper>
             </React.Fragment>

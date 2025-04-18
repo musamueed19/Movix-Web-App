@@ -15,13 +15,18 @@ const VideoPopup = ({ show, setShow, videoId, setVideoId, autoPlay = false }) =>
         <span className="closeBtn" onClick={hidePopup}>
           Close
         </span>
-        <ReactPlayer
+        {
+          !!videoId ?
+          <ReactPlayer
           url={`https://www.youtube.com/watch?v=${videoId}`}
           controls
           width="100%"
           height="100%"
           playing={autoPlay}
-        />
+            />
+            :
+            <h3 className="fallBackText">No Trailer, Available</h3>
+        }
       </div>
     </div>
   );
