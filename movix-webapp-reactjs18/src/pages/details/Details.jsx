@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import Cast from "./cast/Cast";
 import VideosSection from "./videosSection/VideosSection";
+import Similar from "./carousels/Similar";
+import Recommendation from "./carousels/Recommendation";
 
 const Details = () => {
   useParams;
@@ -32,6 +34,13 @@ const Details = () => {
 
         {/* now videos section */}
         <VideosSection videos={data} loading={loading} />
+
+        {/* now similar videos, carousel */}
+        <Similar mediaType={mediaType} id={id} />
+
+        {/* now recommendation videos, carousel */}
+        <Recommendation mediaType={mediaType} id={id} />
+
       </div>
       {/* )} */}
     </>

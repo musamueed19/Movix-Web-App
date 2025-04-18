@@ -22,7 +22,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import CircularRating from "../circularRating/CircularRating";
 import Genre from "../genre/Genre";
 
-const Carousel = ({ data, loading, endpoint }) => {
+const Carousel = ({ data, loading, endpoint, title }) => {
   // destructuring "url" from redux homeSlice
   const { url } = useSelector((state) => state.home);
 
@@ -61,6 +61,7 @@ const Carousel = ({ data, loading, endpoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           color="white"
           className="carouselLeftNav arrow"
